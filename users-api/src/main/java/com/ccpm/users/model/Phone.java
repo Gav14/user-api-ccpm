@@ -18,13 +18,13 @@ public class Phone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "phone_number", nullable = false, length = 30)
+    @Column(name = "number", nullable = false, length = 30)
     private String number;
 
-    @Column(name = "city_code", nullable = false, length = 10)
+    @Column(name = "citycode", nullable = false, length = 10)
     private String cityCode;
 
-    @Column(name = "country_code", nullable = false, length = 10)
+    @Column(name = "contrycode", nullable = false, length = 10)
     private String countryCode;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
