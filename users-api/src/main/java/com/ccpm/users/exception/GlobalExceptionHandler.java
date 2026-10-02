@@ -20,6 +20,11 @@ public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUserNotFound(UserNotFoundException ex) {
+        return build(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
     @ExceptionHandler(InvalidRequestException.class)
     public ResponseEntity<ErrorResponse> handleInvalid(InvalidRequestException ex) {
         return build(HttpStatus.BAD_REQUEST, ex.getMessage());

@@ -1,10 +1,10 @@
 # Users API — Registro de usuarios
 
-API RESTful (Spring Boot 3.5 · JPA/Hibernate · H2 en memoria · Maven · Java 17) para crear usuarios.
+API RESTful (Spring Boot 3.5 · JPA/Hibernate · H2 en memoria · Maven · Java 25) para crear usuarios.
 Todos los endpoints aceptan y retornan **solo JSON**, incluidos los errores: `{"mensaje": "..."}`.
 
 ## Requisitos
-- JDK 17
+- JDK 25
 - Maven 3.9+
 
 ## Compilar, ejecutar y probar
@@ -17,6 +17,7 @@ mvn test                 # solo pruebas (unitarias + integración)
 | Recurso | URL |
 |---|---|
 | Endpoint de registro | `POST http://localhost:8080/api/users` |
+| Swagger UI | http://localhost:8080/swagger-ui.html |
 | Consola H2 | http://localhost:8080/h2-console (JDBC: `jdbc:h2:mem:usersdb`, user `sa`, sin clave) |
 
 ## Probar con curl
@@ -122,7 +123,3 @@ com.ccpm.users
 - **409 Conflict** para correo duplicado; además, restricción `UNIQUE` en BD como red de seguridad ante concurrencia.
 - **Correo normalizado** a minúsculas para que `A@x.cl` y `a@x.cl` no sean "dos" usuarios.
 - Se conserva el nombre `contrycode` tal como pide el enunciado.
-
-## Pruebas
-- `UserServiceTest`: pruebas unitarias del servicio con Mockito (registro, duplicado, correo inválido, contraseña inválida, hash BCrypt).
-- `UserControllerIT`: prueba de integración con `@SpringBootTest` + MockMvc que levanta Spring + H2 y verifica el contrato JSON y los códigos HTTP (201, 400, 409).
